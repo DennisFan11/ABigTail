@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwvvnqamolt4f"]
+
+[ext_resource type="Shader" path="res://tscn/smoke/smoke.gdshader" id="1_ntjaa"]
+[ext_resource type="Script" path="res://tscn/smoke/ColorRect.gd" id="2_cevfc"]
+
+[sub_resource type="Curve" id="Curve_5u0bx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.474026, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_0unoh"]
+curve = SubResource("Curve_5u0bx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mgamo"]
+resource_local_to_scene = true
+shader = ExtResource("1_ntjaa")
+shader_parameter/scale = 8.0
+shader_parameter/speed = 0.5
+shader_parameter/final = 1.0
+shader_parameter/position = Vector2(0, 0)
+shader_parameter/deg = SubResource("CurveTexture_0unoh")
+
+[node name="smoke" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_mgamo")
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+script = ExtResource("2_cevfc")
